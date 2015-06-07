@@ -38,6 +38,7 @@ RUN chown mysql:mysql /var/lib/mysql && touch /var/log/mysqld.log && chown mysql
 ADD MySQL/my.cnf /etc/mysql/my.cnf
 
 ADD MySQL/MySQL_create_eanprod.sql /tmp/MySQL_create_eanprod.sql
+ADD MySQL/MySQL_create_eanprod_fk.sql /tmp/MySQL_create_eanprod_fk.sql
 ADD initdb.sh /tmp/initdb.sh
 RUN /tmp/initdb.sh
 
