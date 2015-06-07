@@ -169,6 +169,7 @@ do
 	## BSD does not support same syntax, but there is no need in MAC OS as Linux (unzip -L `find -iname $FILE.zip`)
     unzip -L -o $FILE.zip
 	ZIPOUT=$?
+    rm $FILE.zip
     ## rename files to CamelCase format
     mv `echo $FILE | tr \[A-Z\] \[a-z\]`.txt $FILE.txt
     ## special fix for DiningDescriptionLIst naming error
@@ -262,6 +263,8 @@ do
 done
 echo "+---------------------------------+----------+------------+"
 echo "Verify done."
+
+cd .. && rm -R $FILES_DIR
 
 ## display endtime for the script
 ENDTIME=$(date +%s)

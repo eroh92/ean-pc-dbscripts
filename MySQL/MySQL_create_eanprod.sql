@@ -1027,16 +1027,16 @@ DELIMITER ;
 ## a "City, StateProvince, Country" or "City, Country" structure
 ##
 DROP FUNCTION IF EXISTS STRING_SPLIT;
-CREATE FUNCTION STRING_SPLIT(x varchar(65535), delim varchar(12), pos int) returns varchar(65535)
+CREATE FUNCTION STRING_SPLIT(x TEXT, delim varchar(12), pos int) returns TEXT
 RETURN TRIM(replace(substring(substring_index(x, delim, pos), length(substring_index(x, delim, pos - 1)) + 1), delim, ''));
 
 DROP FUNCTION IF EXISTS EXTRACT_ADDRESS_PART;
 DELIMITER $$
-CREATE FUNCTION EXTRACT_ADDRESS_PART( source VARCHAR(65535), part VARCHAR(65535) )
-RETURNS VARCHAR(65535)
+CREATE FUNCTION EXTRACT_ADDRESS_PART( source TEXT, part TEXT )
+RETURNS TEXT
 DETERMINISTIC
 BEGIN
-DECLARE part_out VARCHAR(65535);  
+DECLARE part_out TEXT;
     IF BINARY STRING_SPLIT(source,',',3) != BINARY '' THEN  
        IF part = 'City'          THEN SET part_out = STRING_SPLIT(source,',',1); END IF;
        IF part = 'StateProvince' THEN SET part_out = STRING_SPLIT(source,',',2); END IF;
