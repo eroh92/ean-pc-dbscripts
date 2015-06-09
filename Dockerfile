@@ -46,8 +46,5 @@ ADD . /home/eanuser
 WORKDIR /home/eanuser
 RUN ./loaddata.sh
 
-# comment out a few problematic configuration values
-RUN sed -Ei 's/^(bind-address|log)/#&/' /etc/mysql/my.cnf
-
 EXPOSE 3306
 CMD ["mysqld"]
